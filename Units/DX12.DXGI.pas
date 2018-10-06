@@ -347,7 +347,7 @@ type
         Format: TDXGI_FORMAT;
         ScanlineOrdering: TDXGI_MODE_SCANLINE_ORDER;
         Scaling: TDXGI_MODE_SCALING;
-        class operator Initialize(var A: TDXGI_MODE_DESC);
+        {$ifdef fpc} class operator Initialize(var A: TDXGI_MODE_DESC); {$endif}
     end;
 
     PDXGI_MODE_DESC = ^TDXGI_MODE_DESC;
@@ -357,7 +357,7 @@ type
     TDXGI_SAMPLE_DESC = record
         Count: UINT;
         Quality: UINT;
-        class operator Initialize(var A: TDXGI_SAMPLE_DESC);
+        {$ifdef fpc} class operator Initialize(var A: TDXGI_SAMPLE_DESC); {$endif}
     end;
 
     PDXGI_SAMPLE_DESC = ^TDXGI_SAMPLE_DESC;
@@ -511,7 +511,7 @@ type
         Windowed: longbool;
         SwapEffect: TDXGI_SWAP_EFFECT;
         Flags: UINT;
-        class operator Initialize(var A: TDXGI_SWAP_CHAIN_DESC);
+        {$ifdef fpc} class operator Initialize(var A: TDXGI_SWAP_CHAIN_DESC); {$endif}
     end;
 
     PDXGI_SWAP_CHAIN_DESC = ^TDXGI_SWAP_CHAIN_DESC;
@@ -680,6 +680,7 @@ implementation
 
 { TDXGI_SWAP_CHAIN_DESC }
 
+{$ifdef fpc}
 class operator TDXGI_SWAP_CHAIN_DESC.Initialize(var A: TDXGI_SWAP_CHAIN_DESC);
 begin
    // a.BufferDesc: TDXGI_MODE_DESC;
@@ -691,9 +692,11 @@ begin
     a.SwapEffect:=DXGI_SWAP_EFFECT_DISCARD;
     a.Flags:=0;
 end;
+{$endif}
 
 { TDXGI_MODE_DESC }
 
+{$ifdef fpc}
 class operator TDXGI_MODE_DESC.Initialize(var A: TDXGI_MODE_DESC);
 begin
     a.Width:=0;
@@ -704,15 +707,18 @@ begin
     a.ScanlineOrdering:=DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
     a.Scaling:=DXGI_MODE_SCALING_UNSPECIFIED;
 end;
+{$endif}
 
 { TDXGI_SAMPLE_DESC }
 
+{$ifdef fpc}
 class operator TDXGI_SAMPLE_DESC.Initialize(var A: TDXGI_SAMPLE_DESC);
 begin
    // Default values MSDN
    a.Count:=1;
    a.Quality:=0;
 end;
+{$endif}
 
 { TD3DCOLORVALUE }
 
