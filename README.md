@@ -1,4 +1,6 @@
 # DelphiDX12
+# This is a fork of https://github.com/CMCHTPC/DelphiDX12
+
 DirectX 12 Headers for Delphi and FPC
 based on SDK 10.0.16299.0
 
